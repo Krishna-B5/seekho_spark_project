@@ -1,6 +1,6 @@
+package Schema_types
 
 import org.apache.spark.sql.SparkSession
-
 
 object infer_schema {
 
