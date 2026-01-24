@@ -25,11 +25,11 @@ object ddL_and_pgm_schema {
 
     val df = spark.read                // reading and loading the data
       .format("CSV")
-      .option("header",true)
+      .option("header",value = true)
       .schema(pgm_schema)
 //      .option("mode","PERMISSIVE") // By default if u not added also it will consider
-//      .option("mode","FAILFAST")   // It will through a message Malformed records are detected....
-//      .option("mode","DROPMALFORMED") // It will drop the corrupted row
+//      .option("mode","FAILFAST")   // It will throw a message Malformed records are detected....
+//      .option("mode","DROPMALFORMED") // It will drop the corrupted rows.
       .option("path","C:/Users/91973/Desktop/Practise_files/emp.csv")
       .load()
 

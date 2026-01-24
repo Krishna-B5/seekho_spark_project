@@ -15,7 +15,7 @@ object infer_schema {
 
     val df = spark.read   //  Reading a CSV file
       .format("CSV")
-      .option("header",true)
+      .option("header",value = true)
       .option("inferschema","true")
       .option("mode","PERMISSIVE") // This will not work
       .option("mode","FAILFAST")   // This will not work

@@ -15,7 +15,7 @@ object implicit_schema {
 
     val df = spark.read
       .format("json")
-      .option("multiline",true)
+      .option("multiline",value = true)
       .option("path","C:/Users/91973/Desktop/Practise_files/colors.json")
       .load()
 
