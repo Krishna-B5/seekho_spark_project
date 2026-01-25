@@ -45,5 +45,4 @@ object adult_age {
         from sample """).show()
 
   }
-
 }
