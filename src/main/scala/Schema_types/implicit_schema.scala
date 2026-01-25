@@ -7,7 +7,7 @@ object implicit_schema {
   def main(args:Array[String]):Unit ={
 
     print(" This prgm will explain about implicit schema")
-
+// this schema works only for JSON files.
     val spark = SparkSession.builder()
       .appName("Implicit_Schema")
       .master("local[*]")

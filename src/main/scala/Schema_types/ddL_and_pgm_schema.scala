@@ -13,7 +13,7 @@ object ddL_and_pgm_schema {
       .appName("DDL_AND_PRG_SCHEMA")
       .master("local[*]")
       .getOrCreate()
-
+// we will be creating the explicit schema on top of DF.
 //    val ddl_schema = "Id Int,Name String,Age Int,Salary Int" // DDL Schema
 
     val pgm_schema = StructType( List(                        //pgm Schema
@@ -26,7 +26,7 @@ object ddL_and_pgm_schema {
     val df = spark.read                // reading and loading the data
       .format("CSV")
       .option("header",value = true)
-      .schema(pgm_schema)
+      .schema(pgm_schema)             // Explicit schemas we are creating a schema on top of DF
 //      .option("mode","PERMISSIVE") // By default if u not added also it will consider
 //      .option("mode","FAILFAST")   // It will throw a message Malformed records are detected....
 //      .option("mode","DROPMALFORMED") // It will drop the corrupted rows.
