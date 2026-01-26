@@ -1,7 +1,7 @@
 package Practise_Pgm
 
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col,when}
+import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions.{col, when}
 
 object grade_status {
 
@@ -14,31 +14,31 @@ object grade_status {
 
     import spark.implicits._
 
-    val grades = List(
-      (1,85),
-      (2,42),
-      (3,73)
-    ).toDF("student_id","score")
+try {
+  val grades = List((1, 85), (2, 42), (3, 73)
+  ).toDF("student_id", "score")
 
-    val result = grades.select(
-      col("student_id"),
-      col("score"),
-      when(col("score") >= 50,"Pass")
-        .otherwise("Fail").alias("Status")
-    )
+  def grades_status(df: DataFrame): DataFrame = {
+    df.select(col("student_id"), col("score"),
+      when(col("score") >= 50, "Pass")
+        .otherwise("Fail").alias("Status") )
+  }
 
-    result.show()
+  grades_status(grades).show()
 
-    grades.createOrReplaceTempView("student")
+  grades.createOrReplaceTempView("student")
 
-    spark.sql(
-      """ select *,
-        case
-        when score >= 50 then "Pass"
+  spark.sql(
+    """ select *,
+        case when score >= 50 then "Pass"
         else "Fail"
         end as status
         from student
         """).show()
+} catch {
+  case e: Exception => println(" Error Message :" +e.getMessage)
+} finally {
+  spark.stop()
+}
   }
-
 }
