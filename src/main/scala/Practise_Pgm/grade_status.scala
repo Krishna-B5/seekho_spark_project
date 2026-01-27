@@ -15,8 +15,10 @@ object grade_status {
     import spark.implicits._
 
 try {
-  val grades = List((1, 85), (2, 42), (3, 73)
-  ).toDF("student_id", "score")
+  val grades = List((1, 85), (2, 42), (3, 73))
+
+  val df1 = spark.createDataFrame(grades)
+  val df2 = df1.toDF("student_id","score")
 
   def grades_status(df: DataFrame): DataFrame = {
     df.select(col("student_id"), col("score"),
@@ -24,9 +26,9 @@ try {
         .otherwise("Fail").alias("Status") )
   }
 
-  grades_status(grades).show()
+  grades_status(df2).show()
 
-  grades.createOrReplaceTempView("student")
+  df2.createOrReplaceTempView("student")
 
   spark.sql(
     """ select *,
