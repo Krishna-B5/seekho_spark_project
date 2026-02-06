@@ -37,7 +37,6 @@ object fairness_ca1_q3 {
         regexp_extract(col("data"),"\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)",7).alias("8"),
         regexp_extract(col("data"),"\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)+\\s([A-za-z]+)",8).alias("9")
       ).show(false)
-
     } catch {
       case e: Exception => println("Error Message : "+e.getMessage)
     } finally {

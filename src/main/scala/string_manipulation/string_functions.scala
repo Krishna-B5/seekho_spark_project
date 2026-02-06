@@ -40,7 +40,7 @@ object string_functions {
 
     // substring_index
     val df4 = Seq(("Hello world Krishna")).toDF("col1")
-    df4.select(substring_index(col("col1"), ".", 2).as("sub_index")).show() // Up to the second dot
+    df4.select(substring_index(col("col1"), " ", 2).as("sub_index")).show() // based on same delimiter
 
     // split
     df4.select(split(col("col1")," ").getItem(0).alias("splited")).show(false)
